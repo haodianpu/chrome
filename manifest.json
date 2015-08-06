@@ -1,0 +1,23 @@
+{
+	"name": "找钱啦",
+	"description": "淘宝买家在淘宝网浏览商品时可以额外获得找钱网提供的奖励",
+	"version": "0.0.1",
+	"content_scripts": [ {
+		"js": [ "js/jquery.min.js", "js/main.js" ],
+		"matches": [ "http://*/*", "https://*/*" ],
+		"run_at": "document_start"
+	} ],
+	"browser_action": {
+		"default_icon": "images/16X16.png"
+	},
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",   
+	"permissions": [ "tabs", "*://*.taobao.com/*", "*://*.tmall.com/*" ],
+	"icons": { 
+		"16": "images/16X16.png", 
+		"32": "images/32X32.png",             
+		"48": "images/48X48.png",            
+		"128": "images/128X128.png" 
+	},
+	"homepage_url": "http://zhaoqian.la",
+	"manifest_version": 2
+}
