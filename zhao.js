@@ -228,7 +228,12 @@ var ZHAO = (function(){
                         order_time: dt
                     };
                     
-                    $.getScript("http://"+host+"/my/suborder?"+$.param(params)+"&rnd="+d.getTime()+"&callback=console.log");
+                    $.ajax({
+						url: "http://"+host+"/my/suborder",
+						type: "post",
+						dataType: "jsonp",
+						data: $.param(params)+"&rnd="+d.getTime()+"&callback=console.log"
+					});
                 }
             });
         },
