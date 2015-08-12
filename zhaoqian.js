@@ -337,6 +337,7 @@ var ZHAO = (function(){
         if ($("body").size() > 0) {
             
             var search = window.location.search;
+            console.warn(123456);return;
             if (window.location.host.search(/(item|detail)\.(taobao|tmall)\.com$/) > -1) {
                 if (search.indexOf("&sid=") == -1 || search.indexOf("&token=") == -1 || search.indexOf("&ll=") == -1) {
                     // 缺少参数
