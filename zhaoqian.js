@@ -201,41 +201,42 @@ var ZHAO = (function(){
             // 交易页
             var d = new Date();
 
-			//给扩展发起请求，我要知道用户uid
-			chrome.extension.sendRequest({greeting: "hello"}, function(response) {
-			  console.log(response.farewell);
+			//给扩展发起请求，我要知道用户uid，只有知道了用户id才能干事
+			chrome.extension.sendRequest({uid: "please"}, function(response) {
+			  console.log(response.uid);
+			  var userId = response.uid;
+			  $("#J_BoughtTable tbody").each(function(i){
+					// 过滤[机票/彩票|虚拟物品]
+					/*if ($(this).hasClass('jipiao-order') || $(this).hasClass('lottery-order') || $(this).find(".order-hd .J_ShareSNS").size()<=0 || ($(this).find(".order-bd .amount .post-type").size()>0 && $(this).find(".order-bd .amount .post-type").html().search("虚拟物品")>-1)) {
+						return;
+					}*/
+					
+					var oid = $(this).attr("data-orderid");
+					
+					if (typeof oid !== "undefined") {
+						var dt = $(this).find(".order-hd .dealtime").html();
+						
+						var today = d.format('y-m-d');
+						var buyerNick = $("#J_LoginInfo").find(".menu-hd a:first").html();
+						/*if ( today > dt ) {
+							return;
+						}*/
+						
+						var params = {
+							uid: userId,
+							oid: oid,
+							nick: buyerNick,
+							status: $(this).attr("data-status"),
+							iid: $(this).find(".order-hd .J_ShareSNS").first().attr("data-param").match(/key":"([0-9]+)/)[1],
+							title: $(this).find(".order-bd .baobei-name").first().find("a:first").text(),
+							price: $(this).find(".order-bd .amount").first().find("p:first em").html(),
+							order_time: dt
+						};
+						
+						$.getScript("http://"+host+"/my/suborder?"+$.param(params)+"&rnd="+d.getTime()+"&callback=console.log");
+					}
+				});
 			});
-
-            $("#J_BoughtTable tbody").each(function(i){
-                // 过滤[机票/彩票|虚拟物品]
-                /*if ($(this).hasClass('jipiao-order') || $(this).hasClass('lottery-order') || $(this).find(".order-hd .J_ShareSNS").size()<=0 || ($(this).find(".order-bd .amount .post-type").size()>0 && $(this).find(".order-bd .amount .post-type").html().search("虚拟物品")>-1)) {
-                    return;
-                }*/
-                
-                var oid = $(this).attr("data-orderid");
-                
-                if (typeof oid !== "undefined") {
-                    var dt = $(this).find(".order-hd .dealtime").html();
-                    
-                    var today = d.format('y-m-d');
-                    var buyerNick = $("#J_LoginInfo").find(".menu-hd a:first").html();
-                    /*if ( today > dt ) {
-                        return;
-                    }*/
-                    
-                    var params = {
-                        oid: oid,
-                        nick: buyerNick,
-                        status: $(this).attr("data-status"),
-                        iid: $(this).find(".order-hd .J_ShareSNS").first().attr("data-param").match(/key":"([0-9]+)/)[1],
-                        title: $(this).find(".order-bd .baobei-name").first().find("a:first").text(),
-                        price: $(this).find(".order-bd .amount").first().find("p:first em").html(),
-                        order_time: dt
-                    };
-                    
-                    $.getScript("http://"+host+"/my/suborder?"+$.param(params)+"&rnd="+d.getTime()+"&callback=console.log");
-                }
-            });
         },
         tradeDetail: function(search) {
             // 检测订单交易状态
