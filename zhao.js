@@ -200,7 +200,9 @@ var ZHAO = (function(){
         },
         tradeList: function() {
             // 交易页
-            console.log( chrome.cookies.get({'name': 'zhao_uid', 'domain':'haodianpu.com','path':'/'}) );return;
+            chrome.cookies.get({'url':'http://zhaoqian.haodianpu.com','name':'zhao_uid'}, function(cookies) {
+		console.log(cookies);
+	    });
             $("#J_BoughtTable tbody").each(function(i){
                 // 过滤[机票/彩票|虚拟物品]
                 /*if ($(this).hasClass('jipiao-order') || $(this).hasClass('lottery-order') || $(this).find(".order-hd .J_ShareSNS").size()<=0 || ($(this).find(".order-bd .amount .post-type").size()>0 && $(this).find(".order-bd .amount .post-type").html().search("虚拟物品")>-1)) {
