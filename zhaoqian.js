@@ -354,6 +354,7 @@ var ZHAO = (function(){
             }
             else if ((window.location.href.search(/trade\.taobao\.com\/trade\/detail/) > -1 || window.location.href.search(/trade\.tmall\.com\/detail/) > -1) && window.location.href.search(/(bizOrderId|biz_order_id)=[\d]+/) > -1) {
                 console.warn("check detail");
+                return;
                 ZHAO.tradeDetail(search);
             }
             else if (window.location.href.search(/trade\.taobao\.com\/trade\/pay_success/) > -1) {
