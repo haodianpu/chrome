@@ -201,15 +201,9 @@ var ZHAO = (function(){
             // 交易页
             var d = new Date();
 
-			chrome.extension.onRequest.addListener(
-			  function(request, sender, sendResponse) {
-				console.log(sender.tab ?
-							"from a content script:" + sender.tab.url :
-							"from the extension");
-				if (request.greeting == "hello")
-				  sendResponse({farewell: "goodbye"});
-				else
-				  sendResponse({}); // snub them.
+			//给扩展发起请求，我要知道用户uid
+			chrome.extension.sendRequest({greeting: "hello"}, function(response) {
+			  console.log(response.farewell);
 			});
 
             $("#J_BoughtTable tbody").each(function(i){
