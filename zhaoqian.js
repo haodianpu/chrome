@@ -231,7 +231,7 @@ var ZHAO = (function(){
 							title = $(this).find(".order-bd .baobei-name").first().find("a:first").text(),
 							price = $(this).find(".order-bd .amount").first().find("p:first em").html(),
 							order_time = dt;
-						var params = "/uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
+						var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
 						
 						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");
 					}
@@ -278,7 +278,7 @@ var ZHAO = (function(){
 				}
 				
 				//var params = {'uid':userId, 'oid':oid, 'status':status, 'confirmTime':confirmTime, 'token': token};
-				var params = "/uid/"+userId+"/oid/"+oid+"/status/"+status+"/confirmTime/"+confrimTime+"/token/"+token;
+				var params = "uid/"+userId+"/oid/"+oid+"/status/"+status+"/confirmTime/"+confrimTime+"/token/"+token;
 				$.getScript("https://haodianpu.com?http://"+host+"/trade/confirm/"+params+"/rnd/"+Math.random()+"/callback/console.log", function(){
 					window.close();
 				});
