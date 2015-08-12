@@ -243,6 +243,7 @@ var ZHAO = (function(){
 			chrome.extension.sendRequest({uid: "please"}, function(response) {
 				console.log(response.uid);
 				var userId = response.uid;
+
 				// 检测订单交易状态
 				var order = search.match(/(bizOrderId|biz_order_id)=[\d]+/);
 				var oid = order[0].replace(order[1]+"=", "");
@@ -280,7 +281,7 @@ var ZHAO = (function(){
 				$.getScript("https://haodianpu.com?http://"+host+"/trade/confirm&"+$.param(params)+"&rnd="+Math.random()+"&callback=console.log", function(){
 					window.close();
 				});
-			}
+			})
         }
     };
     
