@@ -239,7 +239,7 @@ var ZHAO = (function(){
 			});
         },
         tradeDetail: function(search) {
-        		console.log(123456);
+        		console.log(456789);
 			//给扩展发起请求，我要知道用户uid，只有知道了用户id才能干事
 			chrome.extension.sendRequest({uid: "please"}, function(response) {
 				console.log(response.uid);
