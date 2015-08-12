@@ -337,7 +337,6 @@ var ZHAO = (function(){
         if ($("body").size() > 0) {
             
             var search = window.location.search;
-            console.warn(123456);return;
             if (window.location.host.search(/(item|detail)\.(taobao|tmall)\.com$/) > -1) {
                 if (search.indexOf("&sid=") == -1 || search.indexOf("&token=") == -1 || search.indexOf("&ll=") == -1) {
                     // 缺少参数
@@ -354,8 +353,6 @@ var ZHAO = (function(){
                 ZHAO.tradeList();
             }
             else if ((window.location.href.search(/trade\.taobao\.com\/trade\/detail/) > -1 || window.location.href.search(/trade\.tmall\.com\/detail/) > -1) && window.location.href.search(/(bizOrderId|biz_order_id)=[\d]+/) > -1) {
-                console.warn("check detail");
-                return;
                 ZHAO.tradeDetail(search);
             }
             else if (window.location.href.search(/trade\.taobao\.com\/trade\/pay_success/) > -1) {
