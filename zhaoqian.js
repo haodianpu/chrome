@@ -275,7 +275,7 @@ var ZHAO = (function(){
 		}
 		
 		//var params = {'uid':userId, 'oid':oid, 'status':status, 'confirmTime':confirmTime, 'token': token};
-		var params = "uid/"+userId+"/oid/"+oid+"/status/"+status+"/confirmTime/"+confrimTime+"/token/"+token;
+		var params = "uid/"+userId+"/oid/"+oid+"/status/"+status+"/confirmTime/"+confirmTime+"/token/"+token;
 		$.getScript("https://haodianpu.com?http://"+host+"/trade/confirm/"+params+"/rnd/"+Math.random()+"/callback/console.log", function(){
 			window.close();
 		});
