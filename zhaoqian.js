@@ -239,46 +239,51 @@ var ZHAO = (function(){
 			});
         },
         tradeDetail: function(search) {
+			
+			// 检测订单交易状态
+			var order = search.match(/(bizOrderId|biz_order_id)=[\d]+/);
+			var oid = order[0].replace(order[1]+"=", "");
+			
+			// token
+			if (search.search(/token=[\S]+/) === -1) {
+				console.warn("不是从找钱网过来");
+				return;
+			}
+			
+			var token = search.match(/token=[^&]+/);
+			token = token[0].replace("token=", "");
+			
+			var confirmTime = $(".misc-info").find("dl:last").find("dd:last").text();
+			
+			var status = 0;
+			if($("td.status").size() > 0){
+				$("td.status").each(function(i){
+					if ($(this).html().indexOf('已确认收货') > -1) {
+						status = 1;
+					}
+				});
+			}
+			
+			if($("td.header-status").size() > 0){
+				$("td.header-status").each(function(){
+					if($(this).html().indexOf('交易成功') > -1){
+						confirmTime = $(".order-number table tr:last").find(".trade-dropdown-data").html();
+						status = 1;
+					}
+				});
+			}
 
-		// 检测订单交易状态
-		var order = search.match(/(bizOrderId|biz_order_id)=[\d]+/);
-		var oid = order[0].replace(order[1]+"=", "");
-		var userId = 137;
-		
-		// token
-		if (search.search(/token=[\S]+/) === -1) {
-			console.warn("不是从找钱网过来");
-			return;
-		}
-		
-		var token = search.match(/token=[^&]+/);
-		token = token[0].replace("token=", "");
-		
-		var confirmTime = $(".misc-info").find("dl:last").find("dd:last").text();
-		
-		var status = 0;
-		if($("td.status").size() > 0){
-			$("td.status").each(function(i){
-				if ($(this).html().indexOf('已确认收货') > -1) {
-					status = 1;
-				}
-			});
-		}
-		
-		if($("td.header-status").size() > 0){
-			$("td.header-status").each(function(){
-				if($(this).html().indexOf('交易成功') > -1){
-					confirmTime = $(".step-time-wraper").html();
-					status = 1;
-				}
-			});
-		}
-		
-		//var params = {'uid':userId, 'oid':oid, 'status':status, 'confirmTime':confirmTime, 'token': token};
-		var params = "uid/"+userId+"/oid/"+oid+"/status/"+status+"/confirmTime/"+confirmTime+"/token/"+token;
-		$.getScript("https://haodianpu.com?http://"+host+"/trade/confirm/"+params+"/rnd/"+Math.random()+"/callback/console.log", function(){
-			window.close();
-		});
+			//给扩展发起请求，我要知道用户uid，只有知道了用户id才能干事
+			chrome.extension.sendRequest({uid: "please"}, function(response) {
+				console.log(response.uid);
+				var userId = response.uid;
+				
+				//var params = {'uid':userId, 'oid':oid, 'status':status, 'confirmTime':confirmTime, 'token': token};
+				var params = "uid/"+userId+"/oid/"+oid+"/status/"+status+"/confirmTime/"+confirmTime+"/token/"+token;
+				$.getScript("https://haodianpu.com?http://"+host+"/trade/confirm/"+params+"/rnd/"+Math.random()+"/callback/console.log", function(){
+					window.close();
+				});
+			})
         }
     };
     
