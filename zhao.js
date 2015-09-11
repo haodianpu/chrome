@@ -197,7 +197,6 @@ var ZHAO = (function(){
             });
         },
         tradeList: function() {
-			console.log(123);
             // 交易页
             var d = new Date();
 
@@ -205,13 +204,14 @@ var ZHAO = (function(){
 			chrome.extension.sendRequest({uid: "please"}, function(response) {
 			  console.log(response.uid);
 			  var userId = response.uid;
-			  $("#J_BoughtTable tbody").each(function(i){
+			  $(".trade-order-mainClose").each(function(i){
 					// 过滤[机票/彩票|虚拟物品]
 					/*if ($(this).hasClass('jipiao-order') || $(this).hasClass('lottery-order') || $(this).find(".order-hd .J_ShareSNS").size()<=0 || ($(this).find(".order-bd .amount .post-type").size()>0 && $(this).find(".order-bd .amount .post-type").html().search("虚拟物品")>-1)) {
 						return;
 					}*/
 					
-					var oid = $(this).attr("data-orderid");
+					var oid = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) label span:last").html();
+					console.log(oid);
 					
 					if (typeof oid !== "undefined") {
 						var dt = $(this).find(".order-hd .dealtime").html();
