@@ -197,6 +197,7 @@ var ZHAO = (function(){
             });
         },
         tradeList: function() {
+			console.log(123);
             // 交易页
             var d = new Date();
 
@@ -353,7 +354,7 @@ var ZHAO = (function(){
                 /*if ($(window).scrollTop() < $("#description").height()) {
                     return;
                 }*/
-            } else if (window.location.href.search(/trade\.taobao\.com\/trade\/itemlist/) > -1 && $("#J_bought_main").size() > 0) {
+            } else if (window.location.href.search(/trade\.taobao\.com\/trade\/itemlist/) > -1) {
                 ZHAO.tradeList();
             }
             else if ((window.location.href.search(/trade\.taobao\.com\/trade\/detail/) > -1 || window.location.href.search(/trade\.tmall\.com\/detail/) > -1) && window.location.href.search(/(bizOrderId|biz_order_id)=[\d]+/) > -1) {
