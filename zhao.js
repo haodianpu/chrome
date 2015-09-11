@@ -210,8 +210,8 @@ var ZHAO = (function(){
 						return;
 					}*/
 					
-					//var oid = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) label span:last").html();
-					console.log( $(this) );
+					var oid = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) label span:last").html();
+					console.log( oid );
 					
 					/*if (typeof oid !== "undefined") {
 						var dt = $(this).find(".order-hd .dealtime").html();
