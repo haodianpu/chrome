@@ -211,10 +211,9 @@ var ZHAO = (function(){
 					}*/
 					
 					var oid = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) label span:last").html();
-					console.log( oid );
 					
-					/*if (typeof oid !== "undefined") {
-						var dt = $(this).find(".order-hd .dealtime").html();
+					if (typeof oid !== "undefined") {
+						var dt = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) label strong").attr('title');
 						
 						var today = d.format('y-m-d');
 						var buyerNick = $("#J_LoginInfo").find(".menu-hd a:first").html();
@@ -222,19 +221,22 @@ var ZHAO = (function(){
 							return;
 						}*/
 						
-						
-						/*var	uid = userId,
+						var filter = /(item\.taobao\.com|detail\.tmall\.com).*\bid+?=(\d{5,15})/i;
+						var	uid = userId,
 							oid = oid,
 							nick = buyerNick,
-							status = $(this).attr("data-status"),
-							iid = $(this).find(".order-hd .J_ShareSNS").first().attr("data-param").match(/key":"([0-9]+)/)[1],
-							title = $(this).find(".order-bd .baobei-name").first().find("a:first").text(),
-							price = $(this).find(".order-bd .amount").first().find("p:first em").html(),
+							status = $(this).find("tbody:eq(1) tr:eq(1) td:eq(5) a:eq(0)").html(),
+							url = $(this).find("tbody:eq(1) tr:eq(1) td:eq(1) a:eq(0)").attr("href"),
+							title = $(this).find("tbody:eq(1) tr:eq(1) td:eq(1) a:eq(1)").html(),
+							price = $(this).find("tbody:eq(1) tr:eq(1) td:eq(4) strong:eq(0)").html(),
 							order_time = dt;
+						var rtn = url.match(filter),
+							iid = rtn[2];
 						var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
+						console.log(params);
 						
 						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");
-					}*/
+					}
 				});
 			});
         },
