@@ -230,7 +230,14 @@ var ZHAO = (function(){
 							title = $(this).find("tbody:eq(1) tr:eq(1) td:eq(1) a:eq(1)").html(),
 							price = $(this).find("tbody:eq(1) tr:eq(1) td:eq(4) strong:eq(0)").html(),
 							order_time = dt;
-						console.log(nick+url);
+						console.log(nick);
+						console.log(oid);
+						console.log(uid);
+						console.log(status);
+						console.log(url);
+						console.log(title);
+						console.log(price);
+						console.log(dt);
 						/*var rtn = url.match(filter),
 							iid = rtn[2];
 						var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
