@@ -226,8 +226,8 @@ var ZHAO = (function(){
 							oid = oid,
 							nick = buyerNick,
 							status = $(this).find("tbody:eq(1) tr:eq(1) td:eq(5) a:eq(0)").html(),
-							url = $(this).find("tbody:eq(1) tr:eq(1) td:eq(1) a:eq(0)").attr("href"),
-							title = $(this).find("tbody:eq(1) tr:eq(1) td:eq(1) a:eq(1)").html(),
+							url = $(this).find("tbody:eq(1) tr:eq(1) td:eq(1) .tp-tag-a")[1].attr("href"),
+							title = $(this).find("tbody:eq(1) tr:eq(1) td:eq(1) .tp-tag-a")[1].html(),
 							price = $(this).find("tbody:eq(1) tr:eq(1) td:eq(4) strong:eq(0)").html(),
 							order_time = dt;
 						console.log(nick);
