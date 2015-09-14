@@ -232,10 +232,18 @@ var ZHAO = (function(){
 							order_time = dt;
 						var rtn = url.match(filter),
 							iid = rtn[2];
-						var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
+						console.log("nick:"+nick);
+						console.log("oid:"+oid);
+						console.log("uid"+uid);
+						console.log("status"+status);
+						console.log("url:"+url);
+						console.log("title:"+title);
+						console.log("price:"+price);
+						console.log("dt:"+dt);
+						/*var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
 						console.log(params);
 						
-						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");
+						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");*/
 					}
 				});
 			});
