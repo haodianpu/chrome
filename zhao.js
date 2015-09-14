@@ -226,24 +226,16 @@ var ZHAO = (function(){
 							oid = oid,
 							nick = buyerNick,
 							status = $(this).find("tbody:eq(1) tr:eq(1) td:eq(5) a:eq(0)").html(),
-							url = $(this).find("tbody:eq(1) tr:eq(1) td:eq(1) .tp-tag-a:eq(1)").attr("href"),
-							title = $(this).find("tbody:eq(1) tr:eq(1) td:eq(1) .tp-tag-a:eq(1)").html(),
+							url = $(this).find("tbody:eq(1) tr:eq(1) td:eq(0) .tp-tag-a:eq(1)").attr('href'),
+							title = $(this).find("tbody:eq(1) tr:eq(1) td:eq(0) .tp-tag-a:eq(1) span").html(),
 							price = $(this).find("tbody:eq(1) tr:eq(1) td:eq(4) strong:eq(0)").html(),
 							order_time = dt;
-						console.log(nick);
-						console.log(oid);
-						console.log(uid);
-						console.log(status);
-						console.log(url);
-						console.log(title);
-						console.log(price);
-						console.log(dt);
-						/*var rtn = url.match(filter),
+						var rtn = url.match(filter),
 							iid = rtn[2];
 						var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
 						console.log(params);
 						
-						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");*/
+						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");
 					}
 				});
 			});
