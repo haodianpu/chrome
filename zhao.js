@@ -221,7 +221,7 @@ var ZHAO = (function(){
 							return;
 						}*/
 						
-						var filter = /(item\.taobao\.com|detail\.tmall\.com).*\bid+?=(\d{5,15})/i;
+						var filter = /[item\.taobao\.com|detail\.tmall\.com|buy\.taobao\.com].*id+.*=(\d{5,15})/i;
 						var	uid = userId,
 							oid = oid,
 							nick = buyerNick,
@@ -231,19 +231,11 @@ var ZHAO = (function(){
 							price = $(this).find("tbody:eq(1) tr:eq(1) td:eq(4) strong:eq(0)").html(),
 							order_time = dt;
 						var rtn = url.match(filter),
-							iid = rtn[2];
-						console.log("nick:"+nick);
-						console.log("oid:"+oid);
-						console.log("uid"+uid);
-						console.log("status"+status);
-						console.log("url:"+url);
-						console.log("title:"+title);
-						console.log("price:"+price);
-						console.log("dt:"+dt);
-						/*var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
+							iid = rtn[1];
+						var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
 						console.log(params);
 						
-						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");*/
+						/*$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");*/
 					}
 				});
 			});
