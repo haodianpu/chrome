@@ -210,7 +210,7 @@ var ZHAO = (function(){
 						return;
 					}*/
 					
-					var oid = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) label span:last").html();
+					var oid = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) span:last").html();
 					
 					if (typeof oid !== "undefined") {
 						var dt = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) label strong").attr('title');
@@ -232,10 +232,9 @@ var ZHAO = (function(){
 							order_time = dt;
 						var rtn = url.match(filter),
 							iid = rtn[1];
-						var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
+						var params = encodeURIComponent("uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt);
 						console.log(params);
-						
-						/*$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");*/
+						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");
 					}
 				});
 			});
