@@ -211,7 +211,7 @@ var ZHAO = (function(){
 					}*/
 					
 					var oid = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) span:last").html();
-					
+					console.log(oid);
 					if (typeof oid !== "undefined") {
 						var dt = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) label strong").attr('title');
 						
