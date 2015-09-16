@@ -224,15 +224,15 @@ var ZHAO = (function(){
 						var filter = /[item\.taobao\.com|detail\.tmall\.com|buy\.taobao\.com].*id+.*=(\d{5,15})/i;
 						var	uid = userId,
 							oid = oid,
-							nick = buyerNick,
-							status = $(this).find("tbody:eq(1) tr:eq(1) td:eq(5) a:eq(0)").html(),
+							nick = encodeURIComponent(buyerNick),
+							status = encodeURIComponent($(this).find("tbody:eq(1) tr:eq(1) td:eq(5) a:eq(0)").html()),
 							url = $(this).find("tbody:eq(1) tr:eq(1) td:eq(0) .tp-tag-a:eq(1)").attr('href'),
-							title = $(this).find("tbody:eq(1) tr:eq(1) td:eq(0) .tp-tag-a:eq(1) span").html(),
+							title = encodeURIComponent($(this).find("tbody:eq(1) tr:eq(1) td:eq(0) .tp-tag-a:eq(1) span").html()),
 							price = $(this).find("tbody:eq(1) tr:eq(1) td:eq(4) strong:eq(0)").html(),
 							order_time = dt;
 						var rtn = url.match(filter),
 							iid = rtn[1];
-						var params = encodeURIComponent("uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt);
+						var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
 						console.log(params);
 						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");
 					}
