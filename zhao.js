@@ -363,7 +363,7 @@ var ZHAO = (function(){
             }
             else if (window.location.href.search(/trade\.taobao\.com\/trade\/pay_success/) > -1) {
                 // 交易成功跳转至已买到宝贝页
-                window.location.href = 'http://trade.taobao.com/trade/itemlist/list_bought_items.htm';
+                window.location.href = "https://buyertrade.taobao.com/trade/itemlist/list_bought_items.htm";
             }
             
             clearInterval(timer);
