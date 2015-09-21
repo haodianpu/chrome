@@ -211,7 +211,7 @@ var ZHAO = (function(){
 					}*/
 					
 					var oid = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) span:last").html();
-					
+					console.log(oid);
 					if (typeof oid !== "undefined") {
 						var dt = $(this).find("tbody:eq(0) tr:eq(1) td:eq(0) label strong").attr('title');
 						
@@ -233,7 +233,7 @@ var ZHAO = (function(){
 						var rtn = url.match(filter),
 							iid = rtn[1];
 						var params = "uid/"+uid+"/oid/"+oid+"/nick/"+nick+"/status/"+status+"/iid/"+iid+"/title/"+title+"/price/"+price+"/order_time/"+dt;
-						
+						console.log(params);
 						$.getScript("https://haodianpu.com?http://"+host+"/my/suborder/"+params+"/rnd/"+d.getTime()+"/callback/console.log");
 					}
 				});
@@ -363,7 +363,7 @@ var ZHAO = (function(){
             }
             else if (window.location.href.search(/trade\.taobao\.com\/trade\/pay_success/) > -1) {
                 // 交易成功跳转至已买到宝贝页
-                window.location.href = "http://buyertrade.taobao.com/trade/itemlist/list_bought_items.htm";
+                window.location.href = "https://buyertrade.taobao.com/trade/itemlist/list_bought_items.htm";
             }
             
             clearInterval(timer);
