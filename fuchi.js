@@ -1,8 +1,9 @@
 $(document).ready(function(){
-    var host = 'http://app.jiazhen.com/';
+    var host = 'http://fuchi.ytx.la/';
     var href = window.location.href;
     //如果是首页
     if(/^https:\/\/tuiguang.baidu.com\/home\.html.*/.test(href)){
+		console.log('pwd:baidu home page.');
         setTimeout(function(){
             window.location.reload();
         },20000);
@@ -10,7 +11,7 @@ $(document).ready(function(){
 
     //如果是搜索实况页
     if(/^http:\/\/fengchao\.baidu\.com\/nirvana\/main.html[\s\S]*~openTools=adpreview[\s\S]{0,}/.test(href)){
-        console.log('start');
+        console.log('start search.');
         var timestamp = new Date().getTime();
         setInterval(function(){
             if($('#ctrltextAdpreviewKeyword').size() > 0){
