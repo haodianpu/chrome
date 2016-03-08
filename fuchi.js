@@ -36,7 +36,7 @@ $(document).ready(function(){
                     var region=data.region;
                     var status=true;
                     console.log(region);
-                    
+                    console.log($('#ctrlselectAdpreviewRegionSelectorlayer').html());
                     $('#ctrlselectAdpreviewRegionSelectorlayer .ui_select_item').each(function(){
                             $(this).click();
 							console.log('search region');
