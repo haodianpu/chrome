@@ -10,7 +10,7 @@ $(document).ready(function(){
 		//10秒检测1次timestamp
         setInterval(function(){
             if($('#ctrltextAdpreviewKeyword').size() > 0){
-                if(timestamp < new Date().getTime() - 30000){
+                if(timestamp < (new Date().getTime() - 300000)){
                     run();
                 }
             }
