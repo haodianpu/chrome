@@ -1,19 +1,13 @@
 $(document).ready(function(){
     var host = 'http://fuchi.ytx.la/';
     var href = window.location.href;
-    //如果是首页
-    if(/^https:\/\/tuiguang.baidu.com\/home\.html.*/.test(href)){
-		console.log('pwd:baidu home page.');
-        setTimeout(function(){
-            window.location.reload();
-        },20000);
-    }
 
     //如果是搜索实况页
     if(/^http:\/\/fengchao\.baidu\.com\/nirvana\/main.html[\s\S]*~openTools=adpreview[\s\S]{0,}/.test(href)){
         console.log('start search.');
 
         var timestamp = new Date().getTime();
+		//10秒检测1次timestamp
         setInterval(function(){
             if($('#ctrltextAdpreviewKeyword').size() > 0){
                 if(timestamp < new Date().getTime() - 30000){
@@ -21,6 +15,11 @@ $(document).ready(function(){
                 }
             }
         }, 10000);
+		
+		//10分钟点击1次重置按钮
+		/*setInterval(function(){
+			$('#Tools_adpreviewResetBtn').click();
+		},600000);*/
 
         function run(){
 			//点击重置
@@ -61,17 +60,20 @@ $(document).ready(function(){
 
                     //提交查询
                     $('#ctrlbuttonAdPreviewSearchBtn').click();
-
-                    setTimeout(function(){
-                        var html = window.frames["adpreview-frame-pc"].document.getElementsByTagName("HTML")[0].innerHTML;
-                        $.post(host+'manage/screenshot/getdata', {'kid': data.id,'html': html,'tid':data.tid}, function(data){
+					
+					//post数据
+					$("#adpreview-frame-pc").load(function(){
+						console.log('iframe loaded');
+						var html = window.frames["adpreview-frame-pc"].document.getElementsByTagName("HTML")[0].innerHTML;
+						
+						$.post(host+'manage/screenshot/getdata', {'kid': data.id,'html': html,'tid':data.tid}, function(data){
 							console.log('start post data.');
-                            if(data>0){
-                                timestamp = new Date().getTime();
-                                run();
-                            }
-                        });
-                    }, 5000);
+							if(data>0){
+								timestamp = new Date().getTime();
+								run();
+							}
+						});
+					});
                 }
             }, 'json');
             console.log(new Date(timestamp));
