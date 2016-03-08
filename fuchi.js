@@ -41,10 +41,12 @@ $(document).ready(function(){
                             $(this).removeAttr('onmouseout');
                             $(this).attr({'onClick':"ui.util.get('AdpreviewRegionSelector').itemOverHandler(this)"});
                             $(this).click();
+							console.log('search region');
                             $('.fc-region-xlayer').removeClass('hide').show();
                             $('#ctrlselectAdpreviewRegionSelectorcur').click();
                             $('.fc-region-xlayer .region-list li').each(function(){
                                 if($(this).html() == region){
+									console.log('finded region');
                                     $(this).click();
                                     $('.fc-region-xlayer').addClass('hide');
                                     status=false;
