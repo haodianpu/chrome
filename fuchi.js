@@ -10,7 +10,7 @@ $(document).ready(function(){
 		//10秒检测1次timestamp
         setInterval(function(){
             if($('#ctrltextAdpreviewKeyword').size() > 0){
-                if(timestamp == intervalTime || timestamp < (new Date().getTime() - 300000)){
+                if(timestamp == intervalTime || timestamp < (new Date().getTime() - 180000)){
 					intervalTime = new Date().getTime();
                     run();
                 }
@@ -40,7 +40,6 @@ $(document).ready(function(){
 							var region=data.region;
 							var status=true;
 							console.log(region);
-							console.log($('#ctrlselectAdpreviewRegionSelectorlayer').html());
 							$('#ctrlselectAdpreviewRegionSelectorlayer .ui_select_item').each(function(){
 									$(this).click();
 									console.log('search region');
