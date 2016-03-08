@@ -6,11 +6,12 @@ $(document).ready(function(){
     if(/^http:\/\/fengchao\.baidu\.com\/nirvana\/main.html[\s\S]*~openTools=adpreview[\s\S]{0,}/.test(href)){
         console.log('start search.');
 
-        var timestamp = new Date().getTime();
+        var timestamp = intervalTime = new Date().getTime();
 		//10秒检测1次timestamp
         setInterval(function(){
             if($('#ctrltextAdpreviewKeyword').size() > 0){
-                if(timestamp == new Date().getTime() || timestamp < (new Date().getTime() - 300000)){
+                if(timestamp == intervalTime || timestamp < (new Date().getTime() - 300000)){
+					intervalTime = new Date().getTime();
                     run();
                 }
             }
@@ -37,9 +38,6 @@ $(document).ready(function(){
                     console.log(region);
                     
                     $('#ctrlselectAdpreviewRegionSelectorlayer .ui_select_item').each(function(){
-                            $(this).removeAttr('onmouseover');
-                            $(this).removeAttr('onmouseout');
-                            $(this).attr({'onClick':"ui.util.get('AdpreviewRegionSelector').itemOverHandler(this)"});
                             $(this).click();
 							console.log('search region');
                             $('.fc-region-xlayer').removeClass('hide').show();
@@ -48,7 +46,6 @@ $(document).ready(function(){
                                 if($(this).html() == region){
 									console.log('finded region');
                                     $(this).click();
-                                    $('.fc-region-xlayer').addClass('hide');
                                     status=false;
                                 }
                             });
