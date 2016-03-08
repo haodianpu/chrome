@@ -25,56 +25,63 @@ $(document).ready(function(){
         function run(){
 			//点击重置
 			$('#Tools_adpreviewResetBtn').click();
+			
+			//由于要刷新页面，等待一秒
+			var counter = setInterval(function(){
+				if($('#ctrlselectAdpreviewRegionSelectorcur').size()>0){
+					clearInterval(counter);
+					$.get(host+'manage/screenshot/gettask', function(data){
+						console.log('start get task.');
+						if(data){
+							console.log(data);
 
-            $.get(host+'manage/screenshot/gettask', function(data){
-				console.log('start get task.');
-                if(data){
-                    console.log(data);
+							//选择区域
+							$('#ctrlselectAdpreviewRegionSelectorcur').click();
+							var region=data.region;
+							var status=true;
+							console.log(region);
+							console.log($('#ctrlselectAdpreviewRegionSelectorlayer').html());
+							$('#ctrlselectAdpreviewRegionSelectorlayer .ui_select_item').each(function(){
+									$(this).click();
+									console.log('search region');
+									$('.fc-region-xlayer').removeClass('hide').show();
+									$('#ctrlselectAdpreviewRegionSelectorcur').click();
+									$('.fc-region-xlayer .region-list li').each(function(){
+										if($(this).html() == region){
+											console.log('finded region');
+											$(this).click();
+											status=false;
+										}
+									});
+									if(status==false){
+										return false;
+									}
+							});
 
-                    //选择区域
-                    $('#ctrlselectAdpreviewRegionSelectorcur').click();
-                    var region=data.region;
-                    var status=true;
-                    console.log(region);
-                    console.log($('#ctrlselectAdpreviewRegionSelectorlayer').html());
-                    $('#ctrlselectAdpreviewRegionSelectorlayer .ui_select_item').each(function(){
-                            $(this).click();
-							console.log('search region');
-                            $('.fc-region-xlayer').removeClass('hide').show();
-                            $('#ctrlselectAdpreviewRegionSelectorcur').click();
-                            $('.fc-region-xlayer .region-list li').each(function(){
-                                if($(this).html() == region){
-									console.log('finded region');
-                                    $(this).click();
-                                    status=false;
-                                }
-                            });
-                            if(status==false){
-                                return false;
-                            }
-                    });
+							//填写关键词
+							$('#ctrltextAdpreviewKeyword').val(data.keyword);
 
-                    //填写关键词
-                    $('#ctrltextAdpreviewKeyword').val(data.keyword);
-
-                    //提交查询
-                    $('#ctrlbuttonAdPreviewSearchBtn').click();
-					
-					//post数据
-					$("#adpreview-frame-pc").load(function(){
-						console.log('iframe loaded');
-						var html = window.frames["adpreview-frame-pc"].document.getElementsByTagName("HTML")[0].innerHTML;
-						
-						$.post(host+'manage/screenshot/getdata', {'kid': data.id,'html': html,'tid':data.tid}, function(data){
-							console.log('start post data.');
-							if(data>0){
-								timestamp = new Date().getTime();
-								run();
-							}
-						});
-					});
-                }
-            }, 'json');
+							//提交查询
+							$('#ctrlbuttonAdPreviewSearchBtn').click();
+							
+							//post数据
+							$("#adpreview-frame-pc").load(function(){
+								console.log('iframe loaded');
+								var html = window.frames["adpreview-frame-pc"].document.getElementsByTagName("HTML")[0].innerHTML;
+								
+								$.post(host+'manage/screenshot/getdata', {'kid': data.id,'html': html,'tid':data.tid}, function(data){
+									console.log('start post data.');
+									if(data>0){
+										timestamp = new Date().getTime();
+										run();
+									}
+								});
+							});
+						}
+					}, 'json');
+				}
+			}, 1000);
+            
             console.log(new Date(timestamp));
         }
     }
