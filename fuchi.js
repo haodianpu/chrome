@@ -14,7 +14,7 @@ $(document).ready(function(){
                     run();
                 }
             }
-        }, 10000);
+        }, 15000);
 		
 		//10分钟点击1次重置按钮
 		/*setInterval(function(){
