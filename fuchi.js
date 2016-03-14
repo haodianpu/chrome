@@ -90,6 +90,7 @@ $(document).ready(function(){
     
     // 绑定事件
     $("#Tools_adpreview").dblclick(snapshot_run);
+    $$(".tools_head_title").click(snapshot_run);
 
     // 首次执行
     snapshot_run();
