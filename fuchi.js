@@ -4,8 +4,10 @@ var snapshot_href = window.location.href;
 var snapshot_timestamp = new Date().getTime();
 
 function snapshot_run(){
-    if($('#ctrlselectAdpreviewRegionSelectorcur').size()<=0)
+    if($('#ctrlselectAdpreviewRegionSelectorcur').size()<=0){
+        console.log("Waiting ...");
         return setTimeout(snapshot_run, 3000);
+    }
     
     $.get(snapshot_host+'manage/screenshot/gettask', function(data){
         
@@ -85,7 +87,12 @@ $(document).ready(function(){
     /*setInterval(function(){
         $('#Tools_adpreviewResetBtn').click();
     },600000);*/
+    
+    // 绑定事件
+    $("#Tools_adpreview").dblclick(snapshot_run);
 
-    console.log('Start task ...'); 
+    // 首次执行
     snapshot_run();
+    
+    console.log('Start task ...'); 
 });
