@@ -87,4 +87,5 @@ $(document).ready(function(){
     },600000);*/
 
     console.log('Start task ...'); 
+    snapshot_run();
 });
