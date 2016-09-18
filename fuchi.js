@@ -1,5 +1,5 @@
 
-var snapshot_host = 'http://fuchi.ytx.la/';
+var snapshot_host = 'http://haodaojia.net/';
 var snapshot_href = window.location.href;
 var snapshot_timestamp = new Date().getTime();
 
