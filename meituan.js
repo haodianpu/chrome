@@ -66,8 +66,9 @@ $(function(){
 
 });
 
+
 //关闭窗口
-var closeTab = function(){
+function closeTab(){
 	var timer = setTimeout(function(){
 		clearTimeout(timer);
 		window.opener = null;
@@ -78,7 +79,7 @@ var closeTab = function(){
 }
 
 //判定类别列表页
-var checkCat = function(obj,urls){
+function checkCat(obj,urls){
 	if($('html').text().indexOf('下一页') == -1){
 		alert('你已经采集完，请采集其他城市的信息');
 		localStorage.removeItem('itemIndex');
@@ -121,6 +122,3 @@ var checkCat = function(obj,urls){
 
 	},6000);
 }
-
-
-
