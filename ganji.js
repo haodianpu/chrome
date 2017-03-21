@@ -115,6 +115,7 @@ $(function(){
 
 });
 //记录链接
+/*
 var historyUrl = function(urls){
 	//如果localStorage有记录，则先翻页
 	if((typeof window.localStorage.gjurls != 'undefined')){
@@ -133,7 +134,7 @@ var historyUrl = function(urls){
 
 }
 //关闭窗口
-/*
+
 var closeTab = function(){
 	var timer = setTimeout(function(){
 		clearTimeout(timer);
